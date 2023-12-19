@@ -33,5 +33,9 @@
     <p th:text="${surname}" id="surname"></p>
     <p th:text="${age}" id="age"></p>
     <p th:text="${group}" id="group"></p>
+
+<h2 th:text="'Sveiks, tevi sauc ' + ${param.name}"></h2>
+<h2 th:text="'Sveiks, tevs vecums ' + ${param.age}"></h2>
+
 </body>
 </html>
