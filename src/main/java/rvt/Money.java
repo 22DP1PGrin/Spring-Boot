@@ -9,9 +9,9 @@ public class Money {
         this.cents = cents;
     }
 
-    public Money(){
-        this.euros=0;
-        this.cents=0;
+     public Money(){
+         this.euros=0;
+         this.cents=0;
     }
     
     public Money(int e){
@@ -72,8 +72,9 @@ public class Money {
         if(this.euros - decreaser.euros<0){
             Money newMoney = new Money();
             return newMoney;
+    
         }
-        Eur = this.euros-decreaser.cents;
+        Eur = this.euros-decreaser.euros;
         if(this.cents-decreaser.cents<0){
             Eur--;
             Cents=100-(decreaser.cents-this.cents);
@@ -86,9 +87,9 @@ public class Money {
 
     }
     public static void main(String[] args){
-        Money macins1 = new Money(15,54);
+        Money macins1 = new Money(17,54);
         
-        Money macins2 = new Money(17,14);
+        Money macins2 = new Money(15,14);
 
         Money macins3 = macins1.plus(macins2);
         
