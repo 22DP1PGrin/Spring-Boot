@@ -1,7 +1,5 @@
 package rvt;
 
-import rvt.CardPayments.PaymentCard;
-
 public abstract class CardPayments {
     public static class PaymentCard {
         private double balance;
@@ -21,9 +19,9 @@ public abstract class CardPayments {
         public boolean takeMoney(double amount) {
             if (amount <= this.balance) {
                 this.balance -= amount;
-                return true; // Successful transaction
+                return true; 
             } else {
-                return false; // Insufficient balance
+                return false; 
             }
         }
     }
