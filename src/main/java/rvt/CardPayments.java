@@ -2,6 +2,8 @@ package rvt;
 
 import rvt.CardPayments.PaymentCard.PaymentTerminal;
 
+;
+
 public abstract class CardPayments {
     public static class PaymentCard {
         private double balance;
@@ -32,13 +34,12 @@ public abstract class CardPayments {
             private int heartyMeals;  
             
             public PaymentTerminal() {
-                money = 1000.0;
-                affordableMeals = 0;
-                heartyMeals = 0;
+                this.money = 1000.0;
             }
-        
+            
             public double eatAffordably(double payment) {
                 double affordableMealPrice = 2.50;
+                
                 if (payment >= affordableMealPrice) {
                     this.money += affordableMealPrice;
                     affordableMeals++;
@@ -59,7 +60,26 @@ public abstract class CardPayments {
                     return payment;
                 }
             }
+            public boolean eatAffordably(PaymentCard card) {
+                double affordableMealPrice = 2.50;
+                if(card.takeMoney(affordableMealPrice)){
+                    affordableMeals++;
+                    return true;
+                } else{
+                    return false;
+                }
+            }
         
+            public boolean eatHeartily(PaymentCard card) {
+                double heartyMealPrice = 4.30;
+
+                if (card.takeMoney(heartyMealPrice)) {
+                    heartyMeals++; 
+                    return true; 
+                } else {
+                    return false; 
+                }
+            }
             public String toString() {
                 return "money: " + money + ", number of sold afforable meals: " + affordableMeals + ", number of sold hearty meals: " + heartyMeals;
             }
@@ -68,32 +88,43 @@ public abstract class CardPayments {
     
     public class MainProgram {
         public static void main(String[] args) {
-             PaymentCard petesCard = new PaymentCard(10);
-             System.out.println("money " + petesCard.balance());
-             boolean wasSuccessful = petesCard.takeMoney(8);
-             System.out.println("successfully withdrew: " + wasSuccessful);
-             System.out.println("money " + petesCard.balance());
-    
-             wasSuccessful = petesCard.takeMoney(4);
-             System.out.println("successfully withdrew: " + wasSuccessful);
-             System.out.println("money " + petesCard.balance());
+            //  PaymentCard petesCard = new PaymentCard(10);
+            //  System.out.println("money " + petesCard.balance());
+            //  boolean wasSuccessful = petesCard.takeMoney(8);
+            //  System.out.println("successfully withdrew: " + wasSuccessful);
+            //  System.out.println("money " + petesCard.balance());
+            //  wasSuccessful = petesCard.takeMoney(4);
+            //  System.out.println("successfully withdrew: " + wasSuccessful);
+            //  System.out.println("money " + petesCard.balance());
+            
+            // PaymentTerminal unicafeExactum = new PaymentTerminal();
+            // double change = unicafeExactum.eatAffordably(10);
+            // System.out.println("remaining change " + change);
+            // change = unicafeExactum.eatAffordably(5);
+            // System.out.println("remaining change " + change);
+            // change = unicafeExactum.eatHeartily(4.3);
+            // System.out.println("remaining change " + change);
+            // System.out.println(unicafeExactum);
+
+
             PaymentTerminal unicafeExactum = new PaymentTerminal();
 
             double change = unicafeExactum.eatAffordably(10);
-            System.out.println("remaining change " + change);
+            System.out.println("remaining change: " + change);
 
-            change = unicafeExactum.eatAffordably(5);
-            System.out.println("remaining change " + change);
+            PaymentCard annesCard = new PaymentCard(7);
 
-            change = unicafeExactum.eatHeartily(4.3);
-            System.out.println("remaining change " + change);
+            boolean wasSuccessful = unicafeExactum.eatHeartily(annesCard);
+            System.out.println("there was enough money: " + wasSuccessful);
+            wasSuccessful = unicafeExactum.eatHeartily(annesCard);
+            System.out.println("there was enough money: " + wasSuccessful);
+            wasSuccessful = unicafeExactum.eatAffordably(annesCard);
 
+            System.out.println("there was enough money: " + wasSuccessful);
+            
             System.out.println(unicafeExactum);
+
+
         }
     }
 }
-
-    
-
-
-
