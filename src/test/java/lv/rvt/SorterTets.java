@@ -32,9 +32,14 @@ public class SorterTets {
         int[] intArray={3,4,-4,7,};
         int[] intSwapArray={3,-4,4,7};
         Sorter.swap(intArray, 1, 2);
-        assertArrayEquals(intSwapArray, intArray);
-        
-        
+        assertArrayEquals(intSwapArray, intArray);     
+    }
+    @Test
+    public void testSort(){
+        int[] intArray={3,4,-4,7,};
+        int[] intSwapArray={-4,3,4,7};
+        Sorter.sort(intArray);
+        assertArrayEquals(intSwapArray, intArray);  
     }
 }
 
